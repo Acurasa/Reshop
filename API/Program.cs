@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,19 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ShopContext>(opt=>
-{
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-var app = builder.Build();
+    {
+        opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
 builder.Services.AddCors();
+builder.Services.AddTransient<ExceptionMiddleware>();
+var app = builder.Build();
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-}
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(opt=>
-{
-    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
-});
+    {
+        opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:3000");
+    });
 app.MapControllers();
 
 DbInitializer.DbInit(app);
