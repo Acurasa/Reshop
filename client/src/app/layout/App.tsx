@@ -34,7 +34,7 @@ const changeTheme = ()=> {
       ? "radial-gradient(circle, #8B0000, #000000)"
       : "radial-gradient(circle,rgb(113, 248, 203), #fdfefe);"
     }}>
-    <Container maxWidth="xl" sx={{mt: 14}}>
+    <Container maxWidth="xl" sx={{pt: 14}}>
       <Outlet />
     </Container>
     </Box>
