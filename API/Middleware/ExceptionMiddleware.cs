@@ -38,7 +38,7 @@ public class ExceptionMiddleware : IMiddleware
         {
             Status = 500,
             Detail = _env.IsDevelopment() ? exception.StackTrace : null,
-            Title = exception.Message,
+            Title = exception.Message
         };
 
         var options = new JsonSerializerOptions                                                                             
