@@ -1,5 +1,5 @@
 import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const midLinks = [
   { title: "Catalog", path: "/catalog" },
@@ -66,7 +66,7 @@ export default function NavBar({ themeMode, changeMode }: Props) {
           }
         </List>
         <Box display="flex" alignContent="center">
-          <IconButton sx={{ color: "inherit" }}>
+          <IconButton component={Link} to="/basket" size="large" sx={{ color: "inherit" }}>
             <Badge badgeContent="cart" color="secondary">
             </Badge>
           </IconButton>
