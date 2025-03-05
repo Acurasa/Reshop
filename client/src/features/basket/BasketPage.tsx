@@ -1,27 +1,25 @@
 import { useFetchBasketQuery } from './basketApi'
-import { Button, Grid2, Typography } from '@mui/material';
+import { Grid2, Typography } from '@mui/material';
 import BasketItem from './BasketItem';
+import OrderSummary from "../../app/shared/components/OrderSummary";
 
 export default function BasketPage() {
-  const {data, isLoading} = useFetchBasketQuery();
+    const {data, isLoading} = useFetchBasketQuery();
 
-  if(isLoading) return <Typography>!!!Loading!!!</Typography>
+    if (isLoading) return <Typography>Loading basket...</Typography>
 
-  if(!data) return <Typography variant='h3'> Your Basket is Empty </Typography>
+    if (!data || data.items.length === 0) return <Typography variant="h3">Your basket is empty</Typography>
 
-
-  return (
-    <>
-    <Button variant="contained" onClick={() => console.log(data)}>Log Basket Data</Button>
-    <div>{data.basketId}</div>
-    <Grid2 container spacing={2}>
-      <Grid2 size={8}>
-        {data.items.map(item => (
-            <BasketItem item={item} key={item.productId}/>
-        ))}
-      </Grid2>
-    </Grid2>
-
-    </>
-  )
+    return (
+        <Grid2 container spacing={2}>
+            <Grid2 size={8}>
+                {data.items.map(item => (
+                    <BasketItem item={item} key={item.productId} />
+                ))}
+            </Grid2>
+            <Grid2 size={4}>
+                <OrderSummary />
+            </Grid2>
+        </Grid2>
+    )
 }
