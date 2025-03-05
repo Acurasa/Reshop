@@ -3,12 +3,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Item } from "../../app/models/basket"
 import Remove from "@mui/icons-material/Remove";
 import Add from "@mui/icons-material/Add";
+import { useAddBasketItemMutation, useRemoveBasketItemMutation } from "./basketApi";
 
 type Props = {
     item: Item
 }
 
 export default function BasketItem({ item }: Props) {
+
+    const [removeBasketItem] = useRemoveBasketItemMutation();
+    const [addBasketItem] = useAddBasketItemMutation();
+
     return (
         <Paper sx={{
             height: 140,
@@ -46,16 +51,21 @@ export default function BasketItem({ item }: Props) {
 
 
                 <Grid2 container spacing={1} alignItems="center" >
-                    <IconButton color="error" size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0 }}>
+                    <IconButton 
+                    color="error"
+                    size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0 }}
+                     onClick={()=> removeBasketItem({productId: item.productId, quantity: 1})}>
                         <Remove />
                     </IconButton>
                     <Typography variant="h6">{item.quantity}</Typography>
-                    <IconButton color="success" size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0 }}>
+                    <IconButton color="success" size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0 }} onClick={()=> addBasketItem({product: item, quantity: 1})}  >
                         <Add />
                     </IconButton>
                 </Grid2>
             </Box>
-            <IconButton color="error" size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0, alignSelf: "start" }}>
+            <IconButton color="error" size="small" sx={{ border: 1, borderRadius: 1, minWidth: 0, alignSelf: "start" }}
+                     onClick={()=> removeBasketItem({productId: item.productId, quantity: item.quantity})}>
+            
                 <DeleteIcon />
             </IconButton>
 
