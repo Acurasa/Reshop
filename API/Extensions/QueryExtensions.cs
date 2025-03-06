@@ -46,4 +46,11 @@ public static class QueryExtensions
         
         return query;
     }
+
+    // public static IQueryable<Product> Pagination(this IQueryable<Product> query,int? page,int? size)
+    // {
+        
+    // }
+
+
 }
