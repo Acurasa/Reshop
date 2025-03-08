@@ -2,7 +2,7 @@
 
 Reactive SPA E-store practice
 
-## 🛠 Tech Stack
+## Stack
 - **.NET 9** (ASP.NET Core & Identity)
 - **React 19** + **Redux Toolkit**
 - **Stripe** as Payments 
@@ -10,7 +10,7 @@ Reactive SPA E-store practice
 - **TypeScript & Tailwind CSS**
 
 
-## 🚀 Setup
+## Setup
 ```sh
 # Backend
 cd API
